@@ -1,0 +1,197 @@
+<tds-table
+  custom-width="500px"
+  vertical-dividers="true"
+  ngDefaultControl
+  compact-design="true"
+  responsive="true"
+  no-min-width
+>
+  <div class="scrolltable">
+    <tds-table-header class="table_position">
+      <tds-header-cell
+        cell-key="columnName"
+        cell-value="User"
+        custom-width="250px"
+      ></tds-header-cell>
+      <tds-header-cell
+        cell-key="severityReason"
+        cell-value="Database"
+        custom-width="500px"
+      ></tds-header-cell>
+      <tds-header-cell
+        cell-key="privacyReason"
+        cell-value="Role"
+        custom-width="250px"
+      ></tds-header-cell>
+      <tds-header-cell
+        cell-key="privacyReason"
+        cell-value="Actions"
+        custom-width="250px"
+      ></tds-header-cell>
+    </tds-table-header>
+    <tds-table-body id="column-table-list" ngDefaultControl>
+      <tds-table-body-row *ngFor="let usr of allUserDtl" ngDefaultControl>
+        <tds-body-cell cell-key="columnName" disable-padding="false">{{
+          usr.globalUserId
+        }}</tds-body-cell>
+        <tds-body-cell cell-key="severityReason" disable-padding="false">{{
+          usr.userDataBase
+        }}</tds-body-cell>
+        <tds-body-cell cell-key="privacyReason" disable-padding="false">{{
+          usr.userRoleName
+        }}</tds-body-cell>
+        <tds-body-cell cell-key="privacyReason" disable-padding="false">
+          <!-- <tds-button type="button" variant="primary" id="add-user" size="sm" text="Add User"></tds-button> -->
+          <tds-button
+            type="button"
+            ngDefaultControl
+            variant="primary"
+            size="sm"
+            text="Edit"
+            onclick=""
+            (click)="openModal(usr)"
+          ></tds-button
+          >&nbsp;
+          <!-- <button type="button" href="#appModal" data-toggle="modal"  class="scgSubmit" >Generate Sql</button> -->
+          <tds-button
+            type="button"
+            ngDefaultControl
+            variant="primary"
+            id=""
+            size="sm"
+            text="Delete"
+          ></tds-button>
+        </tds-body-cell>
+      </tds-table-body-row>
+    </tds-table-body>
+  </div>
+</tds-table>
+
+<div>
+  <form (ngSubmit)="updateUserDetails()" ngDefaultcontrol>
+    <tds-modal
+      header="Modify User"
+      size="sm"
+      id="modify-user-modal"
+      ngDefaultControl
+      actions-position="sticky"
+      prevent="true"
+    >
+      <span slot="body" class="add-comment-box">
+        <div>
+          <div class="t-comments-box">
+            <div>
+              <div>
+                <div class="adduser-name">
+                  <tds-text-field
+                    type="text"
+                    size="sm"
+                    state="default"
+                    label="Global Username"
+                    label-position="outside"
+                    max-length="100"
+                    no-min-width
+                    placeholder="Enter Global User Name"
+                    ngDefaultControl
+                    [(ngModel)]="this.updateUser.userName"
+                    name="updateUseruserName"
+                  ></tds-text-field>
+                </div>
+                <div class="adduser-name">
+                  <tds-text-field
+                    type="text"
+                    size="sm"
+                    state="default"
+                    label="Full Name"
+                    label-position="outside"
+                    max-length="100"
+                    no-min-width
+                    placeholder="Enter Full Name"
+                    ngDefaultControl
+                    [(ngModel)]="this.updateUser.fullName"
+                    name="updateUserfullName"
+                  ></tds-text-field>
+                </div>
+                <div class="adduser-name">
+                  <tds-text-field
+                    type="text"
+                    size="sm"
+                    state="default"
+                    label="Email"
+                    label-position="outside"
+                    max-length="100"
+                    no-min-width
+                    placeholder="Enter Email"
+                    ngDefaultControl
+                    [(ngModel)]="this.updateUser.email"
+                    name="updateUseremail"
+                  ></tds-text-field>
+                </div>
+                <div class="">
+                  <div>
+                    <label for="updateUserRole">Select Role</label>
+                  </div>
+                  <div>
+                    <select
+                      class="dropdown-option adduser-role"
+                      name="updateUserRole"
+                      id="updateUserRole"
+                    >
+                      <!-- <option class="scgSubmit"  selected="selected" value="" >Select User</option> -->
+                      <option value="" disabled selected>Select Role</option>
+                      <option
+                        *ngFor="let rolemaster of roleMasterDtl"
+                        [value]="rolemaster.roleId"
+                      >
+                        {{ rolemaster.roleName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="">
+                  <div>
+                    <label for="updateUserDB">Select Database</label>
+                  </div>
+                  <div>
+                    <select
+                      class="dropdown-option adduser-database"
+                      name="updateUserDB"
+                      id="updateUserDB"
+                    >
+                      <!-- <option class="scgSubmit"  selected="selected" value="" >Select User</option> -->
+                      <option value="" disabled selected>
+                        Select Database
+                      </option>
+                      <option
+                        *ngFor="let dbmaster of dataBaseMasterDtl"
+                        [value]="dbmaster.dbId"
+                      >
+                        {{ dbmaster.dbName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+      <span slot="actions">
+        <tds-button
+          data-dismiss-modal
+          size="sm"
+          class="dbCommentbutton"
+          text="Close"
+        ></tds-button>
+        &nbsp;
+        <tds-button
+          type="submit"
+          size="sm"
+          text="Save changes"
+          class="dbCommentbutton"
+          variant="primary"
+        ></tds-button>
+      </span>
+    </tds-modal>
+  </form>
+</div>
