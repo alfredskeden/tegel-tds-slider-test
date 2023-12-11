@@ -1,0 +1,18 @@
+<tds-button [text]="modalId + ' Button'" (click)="openModal()"></tds-button>
+<tds-modal [header]="modalId + 'modal'" [id]="'modal-' + modalId" size="md">
+  <span slot="body"> body </span>
+  <span slot="actions" class="tds-u-flex tds-u-gap2">
+    <tds-button
+      data-dismiss-modal
+      size="md"
+      text="Delete"
+      variant="danger"
+    ></tds-button>
+    <tds-button
+      data-dismiss-modal
+      size="md"
+      text="Cancel"
+      variant="secondary"
+    ></tds-button>
+  </span>
+</tds-modal>
